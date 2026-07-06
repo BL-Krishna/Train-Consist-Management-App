@@ -1,24 +1,21 @@
 package model;
 
-public class PassengerBogie {
+public class PassengerBogie extends Bogie {
 
-    private String bogieId;
     private int seatingCapacity;
+
     private int occupiedSeats;
-    private BogieType bogieType;
 
     public PassengerBogie(String bogieId,
                           int seatingCapacity,
                           int occupiedSeats) {
 
-        this.bogieId = bogieId;
+        super(bogieId,
+                BogieType.PASSENGER);
+
         this.seatingCapacity = seatingCapacity;
         this.occupiedSeats = occupiedSeats;
-        this.bogieType = BogieType.PASSENGER;
-    }
 
-    public String getBogieId() {
-        return bogieId;
     }
 
     public int getSeatingCapacity() {
@@ -29,14 +26,6 @@ public class PassengerBogie {
         return occupiedSeats;
     }
 
-    public void setOccupiedSeats(int occupiedSeats) {
-        this.occupiedSeats = occupiedSeats;
-    }
-
-    public BogieType getBogieType() {
-        return bogieType;
-    }
-
     @Override
     public String toString() {
 
@@ -44,7 +33,8 @@ public class PassengerBogie {
                 "bogieId='" + bogieId + '\'' +
                 ", seatingCapacity=" + seatingCapacity +
                 ", occupiedSeats=" + occupiedSeats +
-                ", bogieType=" + bogieType +
                 '}';
+
     }
+
 }
