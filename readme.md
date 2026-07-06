@@ -228,13 +228,13 @@ feature/UC20-Final_Train_Management_System
 # 📝 Commit Message Format
 
 ```
-[Krrish CH] : Initialized Train Consist application
+[krishna  CH] : Initialized Train Consist application
 
-[Krrish CH] : Added passenger bogie management
+[krishna  CH] : Added passenger bogie management
 
-[Krrish CH] : Implemented unique bogie IDs using HashSet
+[krishna  CH] : Implemented unique bogie IDs using HashSet
 
-[Krrish CH] : Implemented linked list based train consist
+[krishna  CH] : Implemented linked list based train consist
 ```
 
 ---
@@ -297,6 +297,6 @@ After completing this project you will understand:
 
 # 👨‍💻 Developed By
 
-**Krrish CH**
+**krishna  CH**
 
 Core Java | Data Structures | Software Engineering | Git | IntelliJ IDEA
