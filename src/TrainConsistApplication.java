@@ -19,34 +19,38 @@ public class TrainConsistApplication {
 
         service.attachRear(
 
-                new PassengerBogie(
-                        "PB102",
-                        72,
-                        58));
-
-        service.attachRear(
-
                 new GoodsBogie(
                         "GB201",
                         CargoType.COAL,
-                        70));
+                        80));
 
         service.attachRear(
 
                 new GoodsBogie(
                         "GB202",
                         CargoType.STEEL,
-                        80));
+                        100));
 
         service.attachRear(
 
                 new PassengerBogie(
-                        "PB103",
-                        60,
-                        40));
+                        "PB102",
+                        72,
+                        58));
+
+        service.allocateCargo(
+                "GB201",
+                40);
+
+        service.allocateCargo(
+                "GB201",
+                20);
+
+        service.allocateCargo(
+                "GB202",
+                75);
 
         service.displayTrain();
 
     }
-
 }
