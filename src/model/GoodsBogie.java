@@ -4,29 +4,50 @@ public class GoodsBogie extends Bogie {
 
     private CargoType cargoType;
 
-    private double loadCapacity;
+    private double maximumCapacity;
+
+    private double currentLoad;
 
     public GoodsBogie(String bogieId,
                       CargoType cargoType,
-                      double loadCapacity) {
+                      double maximumCapacity) {
 
-        super(bogieId,
-                BogieType.GOODS);
+        super(bogieId, BogieType.GOODS);
 
         this.cargoType = cargoType;
-        this.loadCapacity = loadCapacity;
-
+        this.maximumCapacity = maximumCapacity;
+        this.currentLoad = 0;
     }
 
     public CargoType getCargoType() {
-
         return cargoType;
+    }
+
+    public double getMaximumCapacity() {
+        return maximumCapacity;
+    }
+
+    public double getCurrentLoad() {
+        return currentLoad;
+    }
+
+    public double getRemainingCapacity() {
+
+        return maximumCapacity - currentLoad;
 
     }
 
-    public double getLoadCapacity() {
+    public void loadCargo(double weight) {
 
-        return loadCapacity;
+        if (currentLoad + weight > maximumCapacity) {
+
+            throw new IllegalArgumentException(
+                    "Maximum capacity exceeded."
+            );
+
+        }
+
+        currentLoad += weight;
 
     }
 
@@ -36,9 +57,10 @@ public class GoodsBogie extends Bogie {
         return "GoodsBogie{" +
                 "bogieId='" + bogieId + '\'' +
                 ", cargoType=" + cargoType +
-                ", loadCapacity=" + loadCapacity +
+                ", maximumCapacity=" + maximumCapacity +
+                ", currentLoad=" + currentLoad +
+                ", remainingCapacity=" + getRemainingCapacity() +
                 '}';
-
     }
 
 }

@@ -1,7 +1,6 @@
 package service;
 
-import model.Bogie;
-import model.PassengerBogie;
+import model.*;
 import repository.TrainRepository;
 
 public class TrainService {
@@ -31,6 +30,31 @@ public class TrainService {
         repository.getAllBogies()
 
                 .forEach(System.out::println);
+
+    }
+    public void allocateCargo(String bogieId,
+                              double weight) {
+
+        for (Bogie bogie : repository.getAllBogies()) {
+
+            if (bogie instanceof GoodsBogie goods
+                    && goods.getBogieId().equalsIgnoreCase(bogieId)) {
+
+                goods.loadCargo(weight);
+
+                System.out.println();
+
+                System.out.println(weight +
+                        " Tons Loaded into " +
+                        bogieId);
+
+                return;
+
+            }
+
+        }
+
+        System.out.println("Goods Bogie Not Found.");
 
     }
 
