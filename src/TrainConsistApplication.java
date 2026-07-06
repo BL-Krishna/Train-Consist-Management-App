@@ -9,39 +9,35 @@ public class TrainConsistApplication {
                 new TrainService();
 
         trainService.addPassengerBogie(
-
                 new PassengerBogie(
                         "PB101",
                         72,
-                        55
-                )
-        );
+                        60
+                ));
 
         trainService.addPassengerBogie(
-
                 new PassengerBogie(
                         "PB102",
                         72,
-                        62
-                )
-        );
+                        58
+                ));
 
         trainService.addPassengerBogie(
-
                 new PassengerBogie(
                         "PB103",
                         60,
                         45
-                )
-        );
+                ));
+
+        // Duplicate ID
+        trainService.addPassengerBogie(
+                new PassengerBogie(
+                        "PB101",
+                        60,
+                        40
+                ));
 
         trainService.displayAllBogies();
-
-        trainService.searchBogie("PB102");
-
-        trainService.removeBogie("PB103");
-
-        trainService.displaySummary();
 
     }
 

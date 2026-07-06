@@ -13,6 +13,10 @@ public class TrainService {
 
         repository.addBogie(bogie);
 
+        System.out.println(
+                bogie.getBogieId()
+                        + " Added Successfully.");
+
     }
 
     public void displayAllBogies() {
@@ -42,8 +46,6 @@ public class TrainService {
 
         System.out.println();
 
-        System.out.println("Bogie Found");
-
         System.out.println(bogie);
 
     }
@@ -52,9 +54,12 @@ public class TrainService {
 
         if (repository.removeBogie(bogieId)) {
 
-            System.out.println("Bogie Removed Successfully.");
+            System.out.println(
+                    bogieId + " Removed Successfully.");
 
-        } else {
+        }
+
+        else {
 
             System.out.println("Bogie Not Found.");
 
@@ -66,8 +71,9 @@ public class TrainService {
 
         System.out.println();
 
-        System.out.println("Total Passenger Bogies : "
-                + repository.totalBogies());
+        System.out.println(
+                "Total Passenger Bogies : "
+                        + repository.totalBogies());
 
     }
 
