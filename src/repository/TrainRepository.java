@@ -7,14 +7,29 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.*;
+
 public class TrainRepository {
 
     private final List<PassengerBogie> passengerBogies =
             new ArrayList<>();
 
+    private final Set<String> bogieIds =
+            new HashSet<>();
+
     public void addBogie(PassengerBogie bogie) {
 
+        if (bogieIds.contains(bogie.getBogieId())) {
+
+            throw new IllegalArgumentException(
+                    "Duplicate Bogie ID : " + bogie.getBogieId()
+            );
+
+        }
+
         passengerBogies.add(bogie);
+
+        bogieIds.add(bogie.getBogieId());
 
     }
 
@@ -42,7 +57,8 @@ public class TrainRepository {
 
     public boolean removeBogie(String bogieId) {
 
-        PassengerBogie bogie = findById(bogieId);
+        PassengerBogie bogie =
+                findById(bogieId);
 
         if (bogie == null) {
 
@@ -52,7 +68,16 @@ public class TrainRepository {
 
         passengerBogies.remove(bogie);
 
+        bogieIds.remove(bogieId);
+
         return true;
+
+    }
+
+    public boolean containsId(String bogieId) {
+
+        return bogieIds.contains(bogieId);
+
     }
 
     public int totalBogies() {
