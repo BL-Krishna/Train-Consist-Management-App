@@ -5,39 +5,46 @@ public class TrainConsistApplication {
 
     public static void main(String[] args) {
 
-        TrainService trainService =
+        TrainService service =
                 new TrainService();
 
-        trainService.addPassengerBogie(
+        service.attachFront(
+
                 new PassengerBogie(
                         "PB101",
                         72,
-                        60
-                ));
+                        60));
 
-        trainService.addPassengerBogie(
+        service.attachRear(
+
                 new PassengerBogie(
                         "PB102",
                         72,
-                        58
-                ));
+                        58));
 
-        trainService.addPassengerBogie(
+        service.attachRear(
+
                 new PassengerBogie(
                         "PB103",
                         60,
-                        45
-                ));
+                        45));
 
-        // Duplicate ID
-        trainService.addPassengerBogie(
+        service.attachFront(
+
                 new PassengerBogie(
-                        "PB101",
-                        60,
-                        40
-                ));
+                        "PB100",
+                        72,
+                        55));
 
-        trainService.displayAllBogies();
+        service.displayTrain();
+
+        service.displayEnds();
+
+        service.detachFront();
+
+        service.detachRear();
+
+        service.displayTrain();
 
     }
 

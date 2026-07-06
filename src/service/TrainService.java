@@ -8,22 +8,54 @@ public class TrainService {
     private final TrainRepository repository =
             new TrainRepository();
 
-    public void addPassengerBogie(
+    public void attachFront(
             PassengerBogie bogie) {
 
-        repository.addBogie(bogie);
+        repository.addFront(bogie);
 
         System.out.println(
                 bogie.getBogieId()
-                        + " Added Successfully.");
+                        + " Attached at Front");
 
     }
 
-    public void displayAllBogies() {
+    public void attachRear(
+            PassengerBogie bogie) {
+
+        repository.addRear(bogie);
+
+        System.out.println(
+                bogie.getBogieId()
+                        + " Attached at Rear");
+
+    }
+
+    public void detachFront() {
+
+        PassengerBogie bogie =
+                repository.removeFront();
+
+        System.out.println(
+                "Detached : " + bogie);
+
+    }
+
+    public void detachRear() {
+
+        PassengerBogie bogie =
+                repository.removeRear();
+
+        System.out.println(
+                "Detached : " + bogie);
+
+    }
+
+    public void displayTrain() {
 
         System.out.println();
 
-        System.out.println("===== PASSENGER BOGIES =====");
+        System.out.println(
+                "========= TRAIN CONSIST =========");
 
         repository.getAllBogies()
 
@@ -31,49 +63,17 @@ public class TrainService {
 
     }
 
-    public void searchBogie(String bogieId) {
-
-        PassengerBogie bogie =
-                repository.findById(bogieId);
-
-        if (bogie == null) {
-
-            System.out.println("Bogie Not Found.");
-
-            return;
-
-        }
-
-        System.out.println();
-
-        System.out.println(bogie);
-
-    }
-
-    public void removeBogie(String bogieId) {
-
-        if (repository.removeBogie(bogieId)) {
-
-            System.out.println(
-                    bogieId + " Removed Successfully.");
-
-        }
-
-        else {
-
-            System.out.println("Bogie Not Found.");
-
-        }
-
-    }
-
-    public void displaySummary() {
+    public void displayEnds() {
 
         System.out.println();
 
         System.out.println(
-                "Total Passenger Bogies : "
-                        + repository.totalBogies());
+                "Front : "
+                        + repository.getFront());
+
+        System.out.println(
+                "Rear : "
+                        + repository.getRear());
 
     }
 

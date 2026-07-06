@@ -11,78 +11,93 @@ import java.util.*;
 
 public class TrainRepository {
 
-    private final List<PassengerBogie> passengerBogies =
-            new ArrayList<>();
+    private final LinkedList<PassengerBogie> consist =
+            new LinkedList<>();
 
     private final Set<String> bogieIds =
             new HashSet<>();
 
-    public void addBogie(PassengerBogie bogie) {
+    public void addFront(PassengerBogie bogie) {
 
-        if (bogieIds.contains(bogie.getBogieId())) {
+        validateDuplicate(bogie);
 
-            throw new IllegalArgumentException(
-                    "Duplicate Bogie ID : " + bogie.getBogieId()
-            );
-
-        }
-
-        passengerBogies.add(bogie);
+        consist.addFirst(bogie);
 
         bogieIds.add(bogie.getBogieId());
 
     }
 
-    public List<PassengerBogie> getAllBogies() {
+    public void addRear(PassengerBogie bogie) {
 
-        return passengerBogies;
+        validateDuplicate(bogie);
+
+        consist.addLast(bogie);
+
+        bogieIds.add(bogie.getBogieId());
 
     }
 
-    public PassengerBogie findById(String bogieId) {
+    private void validateDuplicate(PassengerBogie bogie) {
 
-        for (PassengerBogie bogie : passengerBogies) {
+        if (bogieIds.contains(bogie.getBogieId())) {
 
-            if (bogie.getBogieId().equalsIgnoreCase(bogieId)) {
-
-                return bogie;
-
-            }
+            throw new IllegalArgumentException(
+                    "Duplicate Bogie ID : "
+                            + bogie.getBogieId());
 
         }
 
-        return null;
-
     }
 
-    public boolean removeBogie(String bogieId) {
+    public PassengerBogie removeFront() {
+
+        if (consist.isEmpty())
+            return null;
 
         PassengerBogie bogie =
-                findById(bogieId);
+                consist.removeFirst();
 
-        if (bogie == null) {
+        bogieIds.remove(bogie.getBogieId());
 
-            return false;
-
-        }
-
-        passengerBogies.remove(bogie);
-
-        bogieIds.remove(bogieId);
-
-        return true;
+        return bogie;
 
     }
 
-    public boolean containsId(String bogieId) {
+    public PassengerBogie removeRear() {
 
-        return bogieIds.contains(bogieId);
+        if (consist.isEmpty())
+            return null;
+
+        PassengerBogie bogie =
+                consist.removeLast();
+
+        bogieIds.remove(bogie.getBogieId());
+
+        return bogie;
 
     }
 
-    public int totalBogies() {
+    public PassengerBogie getFront() {
 
-        return passengerBogies.size();
+        return consist.peekFirst();
+
+    }
+
+    public PassengerBogie getRear() {
+
+        return consist.peekLast();
+
+    }
+
+    public List<PassengerBogie> getAllBogies() {
+
+        return consist;
+
+    }
+
+    public int size() {
+
+        return consist.size();
 
     }
 
