@@ -51,6 +51,35 @@ public class TrainConsistApplication {
                 75);
 
         service.displayTrain();
+        System.out.println();
+
+        System.out.println("========= ORIGINAL =========");
+
+        service.displayTrain();
+
+        service.sortByBogieId();
+
+        System.out.println();
+
+        System.out.println("========= SORTED BY ID =========");
+
+        service.displayTrain();
+
+        service.sortByCapacity();
+
+        System.out.println();
+
+        System.out.println("========= SORTED BY CAPACITY =========");
+
+        service.displayTrain();
+
+        service.sortByCurrentLoad();
+
+        System.out.println();
+
+        System.out.println("========= SORTED BY LOAD =========");
+
+        service.displayTrain();
 
     }
 }
