@@ -1,3 +1,5 @@
+import model.CargoType;
+import model.GoodsBogie;
 import model.PassengerBogie;
 import service.TrainService;
 
@@ -8,7 +10,7 @@ public class TrainConsistApplication {
         TrainService service =
                 new TrainService();
 
-        service.attachFront(
+        service.attachRear(
 
                 new PassengerBogie(
                         "PB101",
@@ -24,25 +26,24 @@ public class TrainConsistApplication {
 
         service.attachRear(
 
+                new GoodsBogie(
+                        "GB201",
+                        CargoType.COAL,
+                        70));
+
+        service.attachRear(
+
+                new GoodsBogie(
+                        "GB202",
+                        CargoType.STEEL,
+                        80));
+
+        service.attachRear(
+
                 new PassengerBogie(
                         "PB103",
                         60,
-                        45));
-
-        service.attachFront(
-
-                new PassengerBogie(
-                        "PB100",
-                        72,
-                        55));
-
-        service.displayTrain();
-
-        service.displayEnds();
-
-        service.detachFront();
-
-        service.detachRear();
+                        40));
 
         service.displayTrain();
 
