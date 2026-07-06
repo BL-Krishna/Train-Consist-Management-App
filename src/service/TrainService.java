@@ -1,5 +1,6 @@
 package service;
 
+import comparator.*;
 import model.*;
 import repository.TrainRepository;
 
@@ -11,6 +12,26 @@ public class TrainService {
     public void attachRear(Bogie bogie) {
 
         repository.attachRear(bogie);
+
+    }
+    public void sortByBogieId() {
+
+        repository.sort(
+                new BogieIdComparator());
+
+    }
+
+    public void sortByCapacity() {
+
+        repository.sort(
+                new CapacityComparator());
+
+    }
+
+    public void sortByCurrentLoad() {
+
+        repository.sort(
+                new CurrentLoadComparator());
 
     }
 
@@ -54,8 +75,12 @@ public class TrainService {
 
         }
 
+
         System.out.println("Goods Bogie Not Found.");
 
+
     }
+
+
 
 }
