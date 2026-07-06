@@ -1,8 +1,7 @@
 package repository;
 
 import comparator.CapacityComparator;
-import model.Bogie;
-import model.GoodsBogie;
+import model.*;
 
 import java.util.*;
 
@@ -79,6 +78,100 @@ public class TrainRepository {
             }
 
             return 0;
+
+        }
+        public Bogie findById(String bogieId) {
+
+            for (Bogie bogie : consist) {
+
+                if (bogie.getBogieId().equalsIgnoreCase(bogieId)) {
+
+                    return bogie;
+
+                }
+
+            }
+
+            return null;
+
+        }
+
+        public LinkedList<Bogie> findByType(BogieType type) {
+
+            LinkedList<Bogie> result =
+                    new LinkedList<>();
+
+            for (Bogie bogie : consist) {
+
+                if (bogie.getBogieType() == type) {
+
+                    result.add(bogie);
+
+                }
+
+            }
+
+            return result;
+
+        }
+
+        public LinkedList<GoodsBogie> findByCargoType(CargoType cargoType) {
+
+            LinkedList<GoodsBogie> result =
+                    new LinkedList<>();
+
+            for (Bogie bogie : consist) {
+
+                if (bogie instanceof GoodsBogie goods &&
+                        goods.getCargoType() == cargoType) {
+
+                    result.add(goods);
+
+                }
+
+            }
+
+            return result;
+
+        }
+
+        public LinkedList<PassengerBogie> findPassengerByCapacity(int capacity) {
+
+            LinkedList<PassengerBogie> result =
+                    new LinkedList<>();
+
+            for (Bogie bogie : consist) {
+
+                if (bogie instanceof PassengerBogie passenger &&
+                        passenger.getSeatingCapacity() == capacity) {
+
+                    result.add(passenger);
+
+                }
+
+            }
+
+            return result;
+
+        }
+
+        public LinkedList<GoodsBogie> findGoodsByLoad(double load) {
+
+            LinkedList<GoodsBogie> result =
+                    new LinkedList<>();
+
+            for (Bogie bogie : consist) {
+
+                if (bogie instanceof GoodsBogie goods &&
+                        goods.getCurrentLoad() >= load) {
+
+                    result.add(goods);
+
+                }
+
+            }
+
+            return result;
 
         }
 

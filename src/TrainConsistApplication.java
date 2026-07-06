@@ -1,3 +1,4 @@
+import model.BogieType;
 import model.CargoType;
 import model.GoodsBogie;
 import model.PassengerBogie;
@@ -80,6 +81,36 @@ public class TrainConsistApplication {
         System.out.println("========= SORTED BY LOAD =========");
 
         service.displayTrain();
+
+        System.out.println();
+
+        System.out.println("========== SEARCH BY ID ==========");
+
+        service.searchById("GB201");
+
+        System.out.println();
+
+        System.out.println("========== PASSENGER CAPACITY ==========");
+
+        service.searchPassengerCapacity(72);
+
+        System.out.println();
+
+        System.out.println("========== GOODS BY CARGO ==========");
+
+        service.searchCargoType(CargoType.COAL);
+
+        System.out.println();
+
+        System.out.println("========== GOODS LOAD >= 50 ==========");
+
+        service.searchGoodsByLoad(50);
+
+        System.out.println();
+
+        System.out.println("========== PASSENGER BOGIES ==========");
+
+        service.searchBogieType(BogieType.PASSENGER);
 
     }
 }
