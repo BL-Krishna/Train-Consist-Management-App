@@ -74,5 +74,18 @@ public static void main(String[] args) {
     service.mergeSortById();
 
     service.displayTrain();
+    service.mergeSortById();
+
+    System.out.println();
+
+    System.out.println("===== LINEAR SEARCH =====");
+
+    service.linearSearch("GB201");
+
+    System.out.println();
+
+    System.out.println("===== BINARY SEARCH =====");
+
+    service.binarySearch("GB201");
 
 }
