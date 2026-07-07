@@ -19,6 +19,9 @@ public class TrainService {
     private final StreamService streamService =
             new StreamService();
 
+    private final AnalyticsService analyticsService =
+            new AnalyticsService();
+
     public void attachRear(Bogie bogie) {
 
         if (!RegexValidator.isValidBogieId(
@@ -145,6 +148,109 @@ public class TrainService {
         System.out.println(
 
                 streamService.highestLoadedGoods(
+
+                        repository.getAllBogies()
+
+                )
+
+        );
+
+    }
+    public void analyticsReport() {
+
+        System.out.println();
+
+        System.out.println("========== ANALYTICS ==========");
+
+        System.out.println();
+
+        System.out.println("Bogie Count");
+
+        analyticsService
+
+                .bogieCountByType(repository.getAllBogies())
+
+                .forEach((type, count) ->
+
+                        System.out.println(type + " : " + count));
+
+        System.out.println();
+
+        System.out.println("Cargo Distribution");
+
+        analyticsService
+
+                .cargoCount(repository.getAllBogies())
+
+                .forEach((cargo, count) ->
+
+                        System.out.println(cargo + " : " + count));
+
+        System.out.println();
+
+        System.out.println("Average Passenger Occupancy : "
+
+                + analyticsService.averagePassengerOccupancy(
+
+                repository.getAllBogies()));
+
+        System.out.println();
+
+        System.out.println("Average Cargo Load : "
+
+                + analyticsService.averageCargoLoad(
+
+                repository.getAllBogies()));
+
+        System.out.println();
+
+        System.out.println("Top Passenger Bogie");
+
+        System.out.println(
+
+                analyticsService.topPassengerBogie(
+
+                        repository.getAllBogies()
+
+                )
+
+        );
+
+        System.out.println();
+
+        System.out.println("Top Goods Bogie");
+
+        System.out.println(
+
+                analyticsService.topGoodsBogie(
+
+                        repository.getAllBogies()
+
+                )
+
+        );
+
+        System.out.println();
+
+        System.out.println("Passenger Statistics");
+
+        System.out.println(
+
+                analyticsService.passengerStatistics(
+
+                        repository.getAllBogies()
+
+                )
+
+        );
+
+        System.out.println();
+
+        System.out.println("Cargo Statistics");
+
+        System.out.println(
+
+                analyticsService.cargoStatistics(
 
                         repository.getAllBogies()
 
