@@ -1,10 +1,12 @@
 package exception;
 
 public class InvalidTrainException
-        extends RuntimeException {
+        extends ApplicationException {
 
     public InvalidTrainException(String message) {
+
         super(message);
+
     }
 
 }

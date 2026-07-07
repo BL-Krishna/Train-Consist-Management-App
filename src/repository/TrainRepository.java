@@ -1,6 +1,7 @@
 package repository;
 
 import comparator.CapacityComparator;
+import exception.DuplicateBogieException;
 import model.*;
 
 import java.util.*;
@@ -37,7 +38,7 @@ public class TrainRepository {
 
         if (bogieIds.contains(bogie.getBogieId()))
 
-            throw new IllegalArgumentException(
+            throw new DuplicateBogieException(
                     "Duplicate Bogie ID : "
                             + bogie.getBogieId());
 

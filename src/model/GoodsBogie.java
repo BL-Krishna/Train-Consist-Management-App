@@ -1,5 +1,7 @@
 package model;
 
+import exception.CargoOverloadException;
+
 public class GoodsBogie extends Bogie {
 
     private CargoType cargoType;
@@ -41,9 +43,9 @@ public class GoodsBogie extends Bogie {
 
         if (currentLoad + weight > maximumCapacity) {
 
-            throw new IllegalArgumentException(
-                    "Maximum capacity exceeded."
-            );
+            throw new CargoOverloadException(
+
+                    "Maximum cargo capacity exceeded.");
 
         }
 

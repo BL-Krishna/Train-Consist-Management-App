@@ -1,35 +1,48 @@
+import exception.ExceptionHandler;
 import model.BogieType;
 import model.CargoType;
 import model.GoodsBogie;
 import model.PassengerBogie;
 import service.TrainService;
 
-public static void main(String[] args) {
+public class TrainConsistApplication {
 
-    TrainService service =
-            new TrainService();
+    public static void main(String[] args) {
 
-    service.attachRear(
+        TrainService service =
+                new TrainService();
 
-            new PassengerBogie(
-                    "PB101",
-                    72,
-                    60));
+        try {
 
-    service.attachRear(
+            service.attachRear(
 
-            new PassengerBogie(
-                    "PB102",
-                    72,
-                    55));
+                    new PassengerBogie(
+                            "PB101",
+                            72,
+                            60));
 
-    service.attachRear(
+            service.attachRear(
 
-            new GoodsBogie(
+                    new GoodsBogie(
+                            "GB201",
+                            CargoType.COAL,
+                            80));
+
+            service.allocateCargo(
                     "GB201",
-                    CargoType.COAL,
-                    100));
+                    90);
 
-    service.displayTrain();
+            //service.displayTrain();
+
+        }
+
+        catch (Exception exception) {
+
+            ExceptionHandler.handle(
+                    exception);
+
+        }
+
+    }
 
 }

@@ -1,12 +1,14 @@
 package exception;
 
-
 public class DuplicateBogieException
-        extends RuntimeException {
+        extends ApplicationException {
 
     public DuplicateBogieException(String message) {
+
         super(message);
+
     }
+
 }
 
 
