@@ -1,8 +1,10 @@
 package service;
 
 import comparator.*;
+import exception.InvalidInputException;
 import model.*;
 import repository.TrainRepository;
+import util.RegexValidator;
 
 public class TrainService {
 
@@ -16,11 +18,28 @@ public class TrainService {
 
     public void attachRear(Bogie bogie) {
 
+        if (!RegexValidator.isValidBogieId(
+                bogie.getBogieId())) {
+
+            throw new InvalidInputException(
+                    "Invalid Bogie ID : "
+                            + bogie.getBogieId());
+
+        }
+
         repository.attachRear(bogie);
 
     }
-
     public void attachFront(Bogie bogie) {
+
+        if (!RegexValidator.isValidBogieId(
+                bogie.getBogieId())) {
+
+            throw new InvalidInputException(
+                    "Invalid Bogie ID : "
+                            + bogie.getBogieId());
+
+        }
 
         repository.attachFront(bogie);
 
