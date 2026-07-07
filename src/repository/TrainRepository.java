@@ -52,6 +52,14 @@ public class TrainRepository {
     public void sort(CapacityComparator bogieIdComparator) {
     }
 
+    public Bogie removeRear() {
+        return null;
+    }
+
+    public Bogie removeFront() {
+        return null;
+    }
+
     public class CurrentLoadComparator
             implements Comparator<Bogie> {
 
@@ -185,5 +193,17 @@ public class TrainRepository {
         consist.forEach(System.out::println);
 
     }
+    public void undo() {
+
+        undoRedoService.undo();
+
+    }
+
+    public void redo() {
+
+        undoRedoService.redo();
+
+    }
+
 
 }

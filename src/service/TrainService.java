@@ -1,10 +1,12 @@
 package service;
 
+import command.Operation;
+import command.OperationType;
 import comparator.*;
-import exception.InvalidInputException;
+
 import model.*;
 import repository.TrainRepository;
-import util.RegexValidator;
+
 
 public class TrainService {
 
@@ -24,35 +26,45 @@ public class TrainService {
 
     private final SortingService sortingService =
             new SortingService(repository);
+
     private final SearchService searchService =
             new SearchService(repository);
 
+    private final UndoRedoService undoRedoService =
+            new UndoRedoService(repository);
+
     public void attachRear(Bogie bogie) {
 
-        if (!RegexValidator.isValidBogieId(
-                bogie.getBogieId())) {
-
-            throw new InvalidInputException(
-                    "Invalid Bogie ID : "
-                            + bogie.getBogieId());
-
-        }
-
         repository.attachRear(bogie);
+
+        undoRedoService.save(
+
+                new Operation(
+
+                        OperationType.ATTACH_REAR,
+
+                        bogie
+
+                )
+
+        );
 
     }
     public void attachFront(Bogie bogie) {
 
-        if (!RegexValidator.isValidBogieId(
-                bogie.getBogieId())) {
-
-            throw new InvalidInputException(
-                    "Invalid Bogie ID : "
-                            + bogie.getBogieId());
-
-        }
-
         repository.attachFront(bogie);
+
+        undoRedoService.save(
+
+                new Operation(
+
+                        OperationType.ATTACH_FRONT,
+
+                        bogie
+
+                )
+
+        );
 
     }
 
@@ -310,5 +322,52 @@ public class TrainService {
 
         );
 
+    }
+    public void removeFront() {
+
+        Bogie removed =
+                repository.removeFront();
+
+        if (removed != null) {
+
+            undoRedoService.save(
+
+                    new Operation(
+
+                            OperationType.REMOVE_FRONT,
+
+                            removed
+
+                    )
+
+            );
+
+        }
+
+    }
+    public void removeRear() {
+
+        Bogie removed =
+                repository.removeRear();
+
+        if (removed != null) {
+
+            undoRedoService.save(
+
+                    new Operation(
+
+                            OperationType.REMOVE_REAR,
+
+                            removed
+
+                    )
+
+            );
+
+        }
+
+    }
+
+    public void redo() {
     }
 }
