@@ -1,6 +1,11 @@
 package model;
 
-public class Bogie {
+import java.io.Serializable;
+
+public abstract class Bogie implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     protected String bogieId;
 
     protected BogieType bogieType;

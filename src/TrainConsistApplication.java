@@ -5,88 +5,7 @@ import model.PassengerBogie;
 import service.TrainService;
 
 public static void main(String[] args) {
-    //train service
-    TrainService service =
-            new TrainService();
 
-    service.attachRear(
-            new PassengerBogie(
-                    "PB101",
-                    72,
-                    65));
-
-    service.attachRear(
-            new PassengerBogie(
-                    "PB102",
-                    80,
-                    75));
-
-    GoodsBogie goods1 =
-            new GoodsBogie(
-                    "GB201",
-                    CargoType.COAL,
-                    100);
-
-    goods1.loadCargo(60);
-
-    GoodsBogie goods2 =
-            new GoodsBogie(
-                    "GB202",
-                    CargoType.STEEL,
-                    120);
-
-    goods2.loadCargo(100);
-
-    service.attachRear(goods1);
-
-    service.attachRear(goods2);
-
-
-    service.streamReport();
-    System.out.println();
-
-    System.out.println("Bubble Sort");
-
-    service.bubbleSortById();
-
-    service.displayTrain();
-
-    System.out.println();
-
-    System.out.println("Selection Sort");
-
-    service.selectionSortById();
-
-    service.displayTrain();
-
-    System.out.println();
-
-    System.out.println("Insertion Sort");
-
-    service.insertionSortById();
-
-    service.displayTrain();
-
-    System.out.println();
-
-    System.out.println("Merge Sort");
-
-    service.mergeSortById();
-
-    service.displayTrain();
-    service.mergeSortById();
-
-    System.out.println();
-
-    System.out.println("===== LINEAR SEARCH =====");
-
-    service.linearSearch("GB201");
-
-    System.out.println();
-
-    System.out.println("===== BINARY SEARCH =====");
-
-    service.binarySearch("GB201");
     TrainService service =
             new TrainService();
 
@@ -104,23 +23,29 @@ public static void main(String[] args) {
                     CargoType.COAL,
                     100));
 
-    System.out.println("Original");
+    System.out.println();
+
+    System.out.println("Original Train");
 
     service.displayTrain();
 
-    service.undo();
+    service.saveTrain();
+
+    service.removeFront();
+
+    service.removeFront();
 
     System.out.println();
 
-    System.out.println("After Undo");
+    System.out.println("After Removing");
 
     service.displayTrain();
 
-    service.redo();
+    service.loadTrain();
 
     System.out.println();
 
-    System.out.println("After Redo");
+    System.out.println("After Loading");
 
     service.displayTrain();
 

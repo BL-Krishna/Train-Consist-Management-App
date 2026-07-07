@@ -2,6 +2,8 @@ package model;
 
 public class PassengerBogie extends Bogie {
 
+    private static final long serialVersionUID = 1L;
+
     private int seatingCapacity;
 
     private int occupiedSeats;
