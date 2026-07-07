@@ -8,30 +8,12 @@ public class TrainService {
 
     private final TrainRepository repository =
             new TrainRepository();
+    private final SafetyService safetyService =
+            new SafetyService();
 
     public void attachRear(Bogie bogie) {
 
         repository.attachRear(bogie);
-
-    }
-    public void sortByBogieId() {
-
-        repository.sort(
-                new BogieIdComparator());
-
-    }
-
-    public void sortByCapacity() {
-
-        repository.sort(
-                new CapacityComparator());
-
-    }
-
-    public void sortByCurrentLoad() {
-
-        repository.sort(
-                new CurrentLoadComparator());
 
     }
 
@@ -40,67 +22,7 @@ public class TrainService {
         repository.attachFront(bogie);
 
     }
-    public void searchById(String bogieId) {
 
-        Bogie bogie =
-                repository.findById(bogieId);
-
-        if (bogie == null) {
-
-            System.out.println("Bogie Not Found");
-
-            return;
-
-        }
-
-        System.out.println(bogie);
-
-    }
-
-    public void searchPassengerCapacity(int capacity) {
-
-        repository.findPassengerByCapacity(capacity)
-
-                .forEach(System.out::println);
-
-    }
-
-    public void searchCargoType(CargoType cargoType) {
-
-        repository.findByCargoType(cargoType)
-
-                .forEach(System.out::println);
-
-    }
-
-    public void searchGoodsByLoad(double load) {
-
-        repository.findGoodsByLoad(load)
-
-                .forEach(System.out::println);
-
-    }
-
-    public void searchBogieType(BogieType type) {
-
-        repository.findByType(type)
-
-                .forEach(System.out::println);
-
-    }
-
-    public void displayTrain() {
-
-        System.out.println();
-
-        System.out.println(
-                "========= TRAIN CONSIST =========");
-
-        repository.getAllBogies()
-
-                .forEach(System.out::println);
-
-    }
     public void allocateCargo(String bogieId,
                               double weight) {
 
@@ -126,6 +48,18 @@ public class TrainService {
 
         System.out.println("Goods Bogie Not Found.");
 
+
+    }
+    public void validateTrain() {
+
+        safetyService.validateTrain(
+
+                repository.getAllBogies());
+
+        System.out.println();
+
+        System.out.println(
+                "Train Safety Validation Successful.");
 
     }
 
