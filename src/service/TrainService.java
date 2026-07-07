@@ -24,6 +24,8 @@ public class TrainService {
 
     private final SortingService sortingService =
             new SortingService(repository);
+    private final SearchService searchService =
+            new SearchService(repository);
 
     public void attachRear(Bogie bogie) {
 
@@ -288,6 +290,25 @@ public class TrainService {
     public void displayTrain() {
 
         repository.displayTrain();
+
+    }
+    public void linearSearch(String bogieId) {
+
+        System.out.println(
+
+                searchService.linearSearch(bogieId)
+
+        );
+
+    }
+
+    public void binarySearch(String bogieId) {
+
+        System.out.println(
+
+                searchService.binarySearch(bogieId)
+
+        );
 
     }
 }
