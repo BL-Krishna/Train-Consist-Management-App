@@ -22,6 +22,9 @@ public class TrainService {
     private final AnalyticsService analyticsService =
             new AnalyticsService();
 
+    private final SortingService sortingService =
+            new SortingService(repository);
+
     public void attachRear(Bogie bogie) {
 
         if (!RegexValidator.isValidBogieId(
@@ -259,7 +262,32 @@ public class TrainService {
         );
 
     }
+    public void bubbleSortById() {
 
+        sortingService.bubbleSortById();
 
+    }
 
+    public void selectionSortById() {
+
+        sortingService.selectionSortById();
+
+    }
+
+    public void insertionSortById() {
+
+        sortingService.insertionSortById();
+
+    }
+
+    public void mergeSortById() {
+
+        sortingService.mergeSortById();
+
+    }
+    public void displayTrain() {
+
+        repository.displayTrain();
+
+    }
 }
