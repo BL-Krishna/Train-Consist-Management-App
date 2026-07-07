@@ -2,6 +2,8 @@ package model;
 
 public class GoodsBogie extends Bogie {
 
+    private static final long serialVersionUID = 1L;
+
     private CargoType cargoType;
 
     private double maximumCapacity;

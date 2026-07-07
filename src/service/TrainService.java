@@ -33,6 +33,9 @@ public class TrainService {
     private final UndoRedoService undoRedoService =
             new UndoRedoService(repository);
 
+    private final PersistenceService persistenceService =
+            new PersistenceService(repository);
+
     public void attachRear(Bogie bogie) {
 
         repository.attachRear(bogie);
@@ -369,5 +372,16 @@ public class TrainService {
     }
 
     public void redo() {
+    }
+    public void saveTrain() {
+
+        persistenceService.saveTrain();
+
+    }
+
+    public void loadTrain() {
+
+        persistenceService.loadTrain();
+
     }
 }

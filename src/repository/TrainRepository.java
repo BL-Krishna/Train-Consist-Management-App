@@ -60,6 +60,9 @@ public class TrainRepository {
         return null;
     }
 
+    public void clear() {
+    }
+
     public class CurrentLoadComparator
             implements Comparator<Bogie> {
 
@@ -193,17 +196,17 @@ public class TrainRepository {
         consist.forEach(System.out::println);
 
     }
-    public void undo() {
+    public void clear() {
 
-        undoRedoService.undo();
+        consist.clear();
+
+        bogieIds.clear();
+
+        TrainRepository bogieIndex;
+        bogieIndex.clear();
 
     }
 
-    public void redo() {
-
-        undoRedoService.redo();
-
-    }
 
 
 }
