@@ -43,5 +43,36 @@ public static void main(String[] args) {
 
 
     service.streamReport();
+    System.out.println();
+
+    System.out.println("Bubble Sort");
+
+    service.bubbleSortById();
+
+    service.displayTrain();
+
+    System.out.println();
+
+    System.out.println("Selection Sort");
+
+    service.selectionSortById();
+
+    service.displayTrain();
+
+    System.out.println();
+
+    System.out.println("Insertion Sort");
+
+    service.insertionSortById();
+
+    service.displayTrain();
+
+    System.out.println();
+
+    System.out.println("Merge Sort");
+
+    service.mergeSortById();
+
+    service.displayTrain();
 
 }

@@ -176,5 +176,14 @@ public class TrainRepository {
         }
 
     }
+    public void displayTrain() {
+
+        System.out.println();
+
+        System.out.println("========== TRAIN CONSIST ==========");
+
+        consist.forEach(System.out::println);
+
+    }
 
 }
