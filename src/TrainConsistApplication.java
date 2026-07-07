@@ -87,5 +87,41 @@ public static void main(String[] args) {
     System.out.println("===== BINARY SEARCH =====");
 
     service.binarySearch("GB201");
+    TrainService service =
+            new TrainService();
+
+    service.attachRear(
+
+            new PassengerBogie(
+                    "PB101",
+                    72,
+                    60));
+
+    service.attachRear(
+
+            new GoodsBogie(
+                    "GB201",
+                    CargoType.COAL,
+                    100));
+
+    System.out.println("Original");
+
+    service.displayTrain();
+
+    service.undo();
+
+    System.out.println();
+
+    System.out.println("After Undo");
+
+    service.displayTrain();
+
+    service.redo();
+
+    System.out.println();
+
+    System.out.println("After Redo");
+
+    service.displayTrain();
 
 }
