@@ -10,26 +10,38 @@ public static void main(String[] args) {
             new TrainService();
 
     service.attachRear(
-
             new PassengerBogie(
                     "PB101",
                     72,
-                    60));
+                    65));
 
     service.attachRear(
-
             new PassengerBogie(
                     "PB102",
-                    72,
-                    55));
+                    80,
+                    75));
 
-    service.attachRear(
-
+    GoodsBogie goods1 =
             new GoodsBogie(
                     "GB201",
                     CargoType.COAL,
-                    100));
+                    100);
 
-    service.displayTrain();
+    goods1.loadCargo(60);
+
+    GoodsBogie goods2 =
+            new GoodsBogie(
+                    "GB202",
+                    CargoType.STEEL,
+                    120);
+
+    goods2.loadCargo(100);
+
+    service.attachRear(goods1);
+
+    service.attachRear(goods2);
+
+
+    service.streamReport();
 
 }
