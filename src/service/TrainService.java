@@ -11,6 +11,9 @@ public class TrainService {
     private final SafetyService safetyService =
             new SafetyService();
 
+    private final ReportService reportService =
+            new ReportService();
+
     public void attachRear(Bogie bogie) {
 
         repository.attachRear(bogie);
@@ -60,6 +63,13 @@ public class TrainService {
 
         System.out.println(
                 "Train Safety Validation Successful.");
+
+    }
+    public void generateReport() {
+
+        reportService.generateReport(
+
+                repository.getAllBogies());
 
     }
 
