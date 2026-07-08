@@ -384,4 +384,7 @@ public class TrainService {
         persistenceService.loadTrain();
 
     }
+
+    public void undo() {
+    }
 }
