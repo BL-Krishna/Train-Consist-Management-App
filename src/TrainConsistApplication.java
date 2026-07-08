@@ -4,49 +4,198 @@ import model.GoodsBogie;
 import model.PassengerBogie;
 import service.TrainService;
 
-public static void main(String[] args) {
+import java.util.Scanner;
 
-    TrainService service =
-            new TrainService();
+public class TrainConsistApplication {
 
-    service.attachRear(
+    public static void main(String[] args) {
 
-            new PassengerBogie(
-                    "PB101",
-                    72,
-                    60));
+        Scanner scanner = new Scanner(System.in);
 
-    service.attachRear(
+        TrainService service = new TrainService();
 
-            new GoodsBogie(
-                    "GB201",
-                    CargoType.COAL,
-                    100));
+        boolean running = true;
 
-    System.out.println();
+        while (running) {
 
-    System.out.println("Original Train");
+            System.out.println();
 
-    service.displayTrain();
+            System.out.println("====================================");
 
-    service.saveTrain();
+            System.out.println("TRAIN CONSIST MANAGEMENT SYSTEM");
 
-    service.removeFront();
+            System.out.println("====================================");
 
-    service.removeFront();
+            System.out.println("1. Attach Passenger Bogie");
 
-    System.out.println();
+            System.out.println("2. Attach Goods Bogie");
 
-    System.out.println("After Removing");
+            System.out.println("3. Display Train");
 
-    service.displayTrain();
+            System.out.println("4. Search Bogie");
 
-    service.loadTrain();
+            System.out.println("5. Sort By Bogie ID");
 
-    System.out.println();
+            System.out.println("6. Analytics Report");
 
-    System.out.println("After Loading");
+            System.out.println("7. Validate Train");
 
-    service.displayTrain();
+            System.out.println("8. Undo");
+
+            System.out.println("9. Redo");
+
+            System.out.println("10. Save Train");
+
+            System.out.println("11. Load Train");
+
+            System.out.println("12. Exit");
+
+            System.out.print("Enter Choice : ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+
+                case 1 -> {
+
+                    System.out.print("Bogie ID : ");
+
+                    String id = scanner.next();
+
+                    System.out.print("Seat Capacity : ");
+
+                    int seats = scanner.nextInt();
+
+                    System.out.print("Occupied Seats : ");
+
+                    int occupied = scanner.nextInt();
+
+                    service.attachRear(
+
+                            new PassengerBogie(
+
+                                    id,
+
+                                    seats,
+
+                                    occupied
+
+                            )
+
+                    );
+
+                }
+
+                case 2 -> {
+
+                    System.out.print("Bogie ID : ");
+
+                    String id = scanner.next();
+
+                    System.out.println("Cargo Type");
+
+                    for (CargoType cargo : CargoType.values()) {
+
+                        System.out.println(cargo.ordinal() + 1 + ". " + cargo);
+
+                    }
+
+                    int cargoChoice = scanner.nextInt();
+
+                    CargoType cargo = CargoType.values()[cargoChoice - 1];
+
+                    System.out.print("Maximum Capacity : ");
+
+                    double capacity = scanner.nextDouble();
+
+                    GoodsBogie goods =
+
+                            new GoodsBogie(
+
+                                    id,
+
+                                    cargo,
+
+                                    capacity
+
+                            );
+
+                    System.out.print("Current Load : ");
+
+                    goods.loadCargo(
+
+                            scanner.nextDouble()
+
+                    );
+
+                    service.attachRear(goods);
+
+                }
+
+                case 3 ->
+
+                        service.displayTrain();
+
+                case 4 -> {
+
+                    System.out.print("Enter Bogie ID : ");
+
+                    service.linearSearch(
+
+                            scanner.next()
+
+                    );
+
+                }
+
+                case 5 -> {
+
+                    service.bubbleSortById();
+
+                    System.out.println("Sorted Successfully.");
+
+                }
+
+                case 6 ->
+
+                        service.analyticsReport();
+
+                case 7 ->
+
+                        service.validateTrain();
+
+                case 8 ->
+
+                        service.undo();
+
+                case 9 ->
+
+                        service.redo();
+
+                case 10 ->
+
+                        service.saveTrain();
+
+                case 11 ->
+
+                        service.loadTrain();
+
+                case 12 -> {
+
+                    running = false;
+
+                    System.out.println("Application Closed.");
+
+                }
+
+                default ->
+
+                        System.out.println("Invalid Choice.");
+
+            }
+
+        }
+
+    }
 
 }

@@ -196,16 +196,7 @@ public class TrainRepository {
         consist.forEach(System.out::println);
 
     }
-    public void clear() {
 
-        consist.clear();
-
-        bogieIds.clear();
-
-        TrainRepository bogieIndex;
-        bogieIndex.clear();
-
-    }
 
 
 
